@@ -109,6 +109,10 @@ Route::middleware(['auth', 'verify_phone', 'after_verify'])->group(function () {
             // return Inertia::render('User/EditService');
         ->name('services.create');
 
+        Route::post('/services/store', [UserServiceController::class, 'store'])
+            // return Inertia::render('User/Services');
+        ->name('services.store');
+
         Route::get('/services/update', function () {
             return Inertia::render('User/EditService');
         })->name('services.edit');

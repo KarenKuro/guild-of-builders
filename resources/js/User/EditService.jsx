@@ -50,20 +50,6 @@ export default function EditService({userService, services}) {
 	))
 
 	const submit = (e) => {
-		e.preventDefault();
-
-        const serviceName = data.service_id; 
-        const nameRegex = /^[a-zA-Zа-яА-ЯёЁ]{1,250}$/;
-
-		if(! nameRegex.test(serviceName)) {
-
-			setErrors({
-                ...errors,
-                service_id: t("Название услуги должно содержать только буквы, без цифр и специальных символов, и не более 250 символов.")
-            });
-            return; 
-		}
-
 		if (userService?.id) {
 			put(route("user.services.update", userService.id));
 		} else {

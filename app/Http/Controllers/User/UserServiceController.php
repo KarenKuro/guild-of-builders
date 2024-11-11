@@ -33,7 +33,6 @@ class UserServiceController extends Controller
     {
         // Нужно отдать фронту список, отобранных по языку услуг ($services) из админки
         // (таблица: services)
-        $language = $request->languages;
         // dd($request);
         // dd($language);
         $services = Service::all();
@@ -47,9 +46,12 @@ class UserServiceController extends Controller
     public function store(Request $request)
     {
         // Валидация нужных полей (смотреть в таблице user_services) и запись в БД
-        
+        $data = $request->validate([
+            
+        ]);
+        dd($request);
 
-        return Redirect::route('user.services.index');
+        return Redirect::route('user.services');
     }
 
     /**
