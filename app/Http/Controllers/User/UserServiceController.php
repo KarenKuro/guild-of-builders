@@ -46,10 +46,24 @@ class UserServiceController extends Controller
     public function store(Request $request)
     {
         // Валидация нужных полей (смотреть в таблице user_services) и запись в БД
-        $data = $request->validate([
-            
-        ]);
-        dd($request);
+        $data = $request->all();
+        $service = Service::where('id', $data['service_id'])->first();
+        
+        if (!$service || strlen($service['name']) > 250 ||  preg_match('/^[a-zA-Zа-яА-ЯёЁ-] \s/', $service['name'])) { 
+            throw new \Exception('Incorrect value in the "Service Name" field');
+        }
+
+        // dd((int)$data['hourly_payment']);
+        // dd($data['is_active']);
+        if (!$data['is_by_agreement'] &&  !$data['is_hourly_type'] && !$data['is_work_type']) {
+            throw new \Exception('The "Payment type and amount" field must not be null');
+        } elseif ($data['is_hourly_type'] && ($data['hourly_payment'] == null || (int)($data['hourly_payment']) < 0)) {
+            throw new \Exception('The field "hourly payment" is filled in incorrectly') ;
+        } elseif ($data['is_work_type'] && ($data['work_payment'] == null ||(int)($data['work_payment']) < 0)) {
+            throw new \Exception('The field "work_payment" is filled in incorrectly');
+        }
+
+        dd($data);
 
         return Redirect::route('user.services');
     }
