@@ -21,10 +21,10 @@ export default function Services({userServices}) {
       type: 'SHOW_MODAL', payload: {
         action: () => {
           router.delete(route("user.services.destroy", id), {
-            // onSuccess: () => setRefresh(new Date())
+            onSuccess: () => setRefresh(new Date())
           })
         },
-        text: `${t('common:alert.AreYouSure')} '${text}'?`,
+        text: `${t('Вы уверены')} '${text}'?`,
         type: 'delete'
       }
     });
@@ -93,9 +93,9 @@ function ServiceElement ({text, workPayment, id, hourlyPayment, isHourlyType, is
           <div className='ms-5 hidden md:block'>{isActive ? <></> : <div className='flex items-center justify-center w-[74px] text-[#991B1B] text-[10px] h-5 rounded-full bg-[#FEE2E2]'>{t("common:inactive")}</div>}</div>
         </div>
         <ul className='me-4 md:mx-11 text-sm text-end text-[#374151]'>
-          {isByAgreement ? <li className='my-1'>{t("services.edit.paymentAmount.byAgreement")}</li> : <></>}
-          {isHourlyType ? <li className='my-1'>{hourlyPayment} ₪/{t("common:calendar.hour")}</li> : <></>}
-          {isWorkType ? <li className='my-1'>{workPayment} ₪/{t("common:m2")}<sup>{t("common:2")}</sup></li> : <></>}
+          {isByAgreement ? <li className='my-1'>{t("По договоренности")}</li> : <></>}
+          {isHourlyType ? <li className='my-1'>{hourlyPayment} ₪/{t("час")}</li> : <></>}
+          {isWorkType ? <li className='my-1'>{workPayment} ₪/{t("м")}<sup>{t("common:2")}</sup></li> : <></>}
         </ul>
       </div>
       <div className='bg-[#F9FAFB] flex items-center rounded-r-md'>

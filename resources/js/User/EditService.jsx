@@ -66,7 +66,7 @@ export default function EditService({userService, services}) {
 		<Head title="Edit Service"/>
 		<Page>
 			<Header className='my-12'>
-				{isCreating ? t("Создание услуги") : t("services.edit.editing")}
+				{isCreating ? t("Создание услуги") : t("Редактирование услуги")}
 			</Header>
 			<FormTable>
 				{/*Наименование услуги*/}

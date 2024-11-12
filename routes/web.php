@@ -113,9 +113,17 @@ Route::middleware(['auth', 'verify_phone', 'after_verify'])->group(function () {
             // return Inertia::render('User/Services');
         ->name('services.store');
 
-        Route::get('/services/update', function () {
-            return Inertia::render('User/EditService');
-        })->name('services.edit');
+        Route::get('/services/edit/{id}', [UserServiceController::class, 'edit']) 
+            // return Inertia::render('User/EditService');
+        ->name('services.edit');
+
+        Route::put('/services/update/{id}', [UserServiceController::class, 'update']) 
+            // return Inertia::render('User/EditService');
+        ->name('services.update');
+
+        Route::delete('/services/destroy/{id}', [UserServiceController::class, 'destroy']) 
+        // return Inertia::render('User/EditService');
+        ->name('services.destroy');
     });
 
     // admin's part
